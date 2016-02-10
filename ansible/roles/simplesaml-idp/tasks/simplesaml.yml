@@ -1,0 +1,48 @@
+- debug: vars=simplesaml
+
+- name: Grabs required simplesaml version
+  get_url:
+    url=https://simplesamlphp.org/res/downloads/simplesamlphp-{{simplesaml_version}}.tar.gz
+    dest=/tmp
+
+- name: Creates install directory
+  file:
+    path={{simplesaml_install_directory}}
+    state=directory
+
+- name: Unpacks simplesaml
+  unarchive:
+    copy=no
+    src=/tmp/simplesamlphp-{{simplesaml_version}}.tar.gz
+    dest={{simplesaml_install_directory}}
+
+- name: Set configs
+  template: dest={{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/{{ item.destdir }}/{{ item.file }}
+            src={{ item.file }}.j2
+  with_items:
+    - { file: 'config.php', destdir: 'config'}
+    - { file: 'authsources.php', destdir: 'config' }
+    - { file: 'saml20-idp-hosted.php', destdir: 'metadata'}
+    - { file: 'config-metarefresh.php', destdir: 'config'}
+
+- name: Enable exampleauth module
+  file:
+    path={{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/modules/{{ item }}/enable
+    state=touch
+  with_items:
+    - exampleauth
+    - metarefresh
+
+- name: Creates metadata directory
+  file:
+    path=/{{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/metadata/project.local owner=www-data
+    state=directory
+
+- name: Creates cert directory
+  file:
+    path=/{{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/cert
+    state=directory
+
+- name: create self-signed SSL cert
+  sudo: yes
+  command: openssl req -new -nodes -x509 -subj "/C=HU/ST=Budapest/L=Budapest/O=IT/CN=project.local" -days 3650 -keyout {{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/cert/server.pem -out {{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/cert/server.crt

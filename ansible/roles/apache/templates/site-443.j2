@@ -1,0 +1,29 @@
+<VirtualHost *:443>
+    ServerName project.local
+    ServerAdmin sys-admin@niif.hu
+    DocumentRoot /var/www/project/web
+
+    SSLEngine on
+    SSLOptions +StdEnvVars +ExportCertData
+
+    SSLCertificateFile /etc/shibboleth/project.shibboleth.crt
+    SSLCertificateKeyFile /etc/shibboleth/project.shibboleth.key
+
+    <Directory /var/www/project/web>
+        Options Indexes FollowSymLinks MultiViews
+        Allow from all
+        AllowOverride All
+        AuthType shibboleth
+        ShibUseHeaders On
+        ShibRequireSession Off
+    </Directory>
+
+    Alias /simplesaml {{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/www
+
+    <Directory {{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/www>
+        Order allow,deny
+        Allow from all
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>

@@ -1,0 +1,50 @@
+# Before building Docker image rename this file to index.yml then fill the vars
+# Default values are mostly dummy strings
+# For MySQL it is tested with tutum/mariadb docker images
+- hosts: localhost
+  roles:
+    - apache
+    - shibboleth_sp
+    - simplesaml-idp
+    - mbasanta.pip
+    - tailon
+  vars:
+    - tailon_logfiles:
+      - system:
+          - /var/log/messages
+          - /var/log/syslog
+      - shibboleth:
+          - /var/log/shibboleth/shibd.log
+          - /var/log/shibboleth/shibd_warn.log
+          - /var/log/shibboleth/signature.log
+          - /var/log/shibboleth/transaction.log
+      - apache:
+          - /var/log/apache2/access.log
+          - /var/log/apache2/error.log
+      - application:
+          - /var/www/project/app/logs/prod.log
+          - /var/www/project/app/logs/dev.log
+      - simplesamlphp:
+          - /tmp/simplesamlphp.log
+  tasks:
+   # - name: Run composer install
+   #   composer:
+   #     command: install
+   #     working_dir: /var/www
+
+   # - name: Run composer update
+   #   composer:
+   #     command: update
+   #     working_dir: /var/www
+
+   # - name: Init simplesamlphp config
+   #   shell: "mv /var/www/vendor/simplesamlphp/simplesamlphp/config-templates/*.php /var/www/vendor/simplesamlphp/simplesamlphp/config/"
+
+   # - name: Enable metarefresh module
+   #   shell: "touch /var/www/vendor/simplesamlphp/simplesamlphp/modules/metarefresh/enable"
+
+   # - name: Load metadata for SPs
+   #   shell: "php /var/www/vendor/simplesamlphp/simplesamlphp/modules/metarefresh/bin/metarefresh.php {% for sp in sp_hosts %}http://entities.eduid.hu/entities/https%3A%2F%2F{{ sp }}%2Fshibboleth {% endfor %}"
+
+   # - name: delete /tmp/simplesaml
+   #   shell: rm -rf /tmp/simplesaml && chown -R www-data /var/www/vendor/simplesamlphp/simplesamlphp

@@ -1,0 +1,4 @@
+- name: Install tailon
+  pip: name=tailon
+- name: Create configuration
+  template: src=tailon.yml.j2 dest=/etc/tailon.yml

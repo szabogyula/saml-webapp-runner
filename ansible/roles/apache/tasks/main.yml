@@ -1,0 +1,55 @@
+- name: Install http packages
+  apt:
+    name: "{{item}}"
+    state: installed
+  with_items:
+    - apache2
+    - php5
+    - php5-mysql
+    - php5-mcrypt
+    - mcrypt
+    - php5-curl
+
+- name: Enable mcrypt extension
+  lineinfile:
+    dest: /etc/php5/cli/php.ini
+    line: "extension=mcrypt.so"
+    insertafter: EOF
+
+- name: Enable apache2 modules
+  apache2_module:
+    name: "{{ item }}"
+  with_items:
+   - rewrite
+   - headers
+   - expires
+   - ssl
+
+- name: Delete index.html
+  file:
+    path: /var/www/html/index.html
+    state: absent
+
+- name: Configure site
+  template:
+    src: site-443.j2
+    dest: "/etc/apache2/sites-available/000-default.conf"
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: Install mysql-client package
+  apt:
+    name: mysql-client
+    state: installed
+
+# - name: Install config.php
+#   template:
+#     src: config.php.j2
+#     dest: /var/www/config.php
+#     owner: root
+#     group: root
+#     mode: 0644
+#     backup: yes
+

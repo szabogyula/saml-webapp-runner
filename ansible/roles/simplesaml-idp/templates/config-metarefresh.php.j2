@@ -1,0 +1,23 @@
+<?php
+
+$config = array(
+
+    'sets' => array(
+        'project' => array(
+            'cron'      => array('daily'),
+            'sources'   => array(
+                array(
+                    'src' => 'https://project.local/Shibboleth.sso/Metadata'
+                ),
+            ),
+            'expireAfter'       => 60*60*24*365, // Maximum 365 days cache time.
+            'outputDir'     => 'metadata/project.local',
+
+            /*
+             * Which output format the metadata should be saved as.
+             * Can be 'flatfile' or 'serialize'. 'flatfile' is the default.
+             */
+            'outputFormat' => 'flatfile',
+        )
+    )
+);

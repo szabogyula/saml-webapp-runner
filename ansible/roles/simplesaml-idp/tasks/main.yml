@@ -1,0 +1,2 @@
+- include: check_vars.yml tags=simplesaml,saml,check
+- include: simplesaml.yml tags=simplesaml,saml
