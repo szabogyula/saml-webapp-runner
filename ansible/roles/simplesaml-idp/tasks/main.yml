@@ -1,2 +1,4 @@
 - include: check_vars.yml tags=simplesaml,saml,check
 - include: simplesaml.yml tags=simplesaml,saml
+- name: Install curl
+  apt: pkg=curl update_cache=yes

@@ -83,7 +83,7 @@ $config = array(
     ),
     */
 
-    'example-userpass' => array(
+    'default' => array(
         'exampleauth:UserPass',
 
         // Give the user an option to save their username for future login attempts
@@ -91,13 +91,20 @@ $config = array(
         //'remember.username.enabled' => FALSE,
         //'remember.username.checked' => FALSE,
 
-        'student:studentpass' => array(
-            'uid' => array('test'),
+        's:s' => array(
+            'eduPersonPrincipalName' => array('student@project.local'),
             'eduPersonAffiliation' => array('member', 'student'),
+            'mail' => array('student@project.local'),
+            'displayName' => 'Student Student',
+            'eduPersonEntitlement' => array('a:permission:a'),
+
         ),
-        'employee:employeepass' => array(
-            'uid' => array('employee'),
+        'e:e' => array(
+            'eduPersonPrincipalName' => array('employee@project.local'),
             'eduPersonAffiliation' => array('member', 'employee'),
+            'mail' => array('employee@project.local'),
+            'displayName' => 'Employee Employee',
+            'eduPersonEntitlement' => array('a:permission:b'),
         ),
     ),
 

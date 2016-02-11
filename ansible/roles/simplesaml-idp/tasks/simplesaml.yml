@@ -25,6 +25,10 @@
     - { file: 'saml20-idp-hosted.php', destdir: 'metadata'}
     - { file: 'config-metarefresh.php', destdir: 'config'}
 
+- name: Copy default config files
+  copy: src={{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/modules/cron/config-templates/module_cron.php
+        dest={{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/config
+
 - name: Enable exampleauth module
   file:
     path={{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/modules/{{ item }}/enable
@@ -32,6 +36,7 @@
   with_items:
     - exampleauth
     - metarefresh
+    - cron
 
 - name: Creates metadata directory
   file:
