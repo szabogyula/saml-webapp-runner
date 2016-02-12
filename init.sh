@@ -1,6 +1,7 @@
 #!/bin/bash
 echo start apache2
-service apache2 start
+export
+apachectl -D BACKGROUND
 echo start shibd
 service shibd start
 echo refresh metadata
