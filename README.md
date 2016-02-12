@@ -7,7 +7,7 @@
 
 ## Build and run
 * Build: `docker build -t niifi/federated-webapp-runner .`
-* Development Run (adjust the example hostnames before running!): `docker run -d -p 80:80 -p 443:443 -p 8080:8080 --add-host project.local:127.0.0.1 niifi/federated-webapp-runner
+* Development Run (adjust the example hostnames before running!): `docker run -d -p 80:80 -p 443:443 -p 8080:8080 --add-host project.local:127.0.0.1 --add-host elk_host:127.0.0.1 niifi/federated-webapp-runner
  -v /path/to/your_symfony_project:/var/www/project niifi/federated-webapp-runner
  `
  * Config `/etc/hosts` file in your machine: all hostnames `project.local` must show to local Docker IP address, which is usually `project.local 192.168.99.100`

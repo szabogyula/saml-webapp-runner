@@ -21,6 +21,7 @@
       - apache:
           - /var/log/apache2/access.log
           - /var/log/apache2/error.log
+          - /var/log/apache2/other_vhosts_access.log
       - application:
           - /var/www/project/app/logs/prod.log
           - /var/www/project/app/logs/dev.log
