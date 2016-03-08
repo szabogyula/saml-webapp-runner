@@ -91,20 +91,35 @@ $config = array(
         //'remember.username.enabled' => FALSE,
         //'remember.username.checked' => FALSE,
 
-        's:s' => array(
+        's:pass' => array(
             'eduPersonPrincipalName' => array('student@project.local'),
-            'eduPersonAffiliation' => array('member', 'student'),
+            'eduPersonScopedAffiliation' => array('member@project.local', 'student@project.local'),
             'mail' => array('student@project.local'),
             'displayName' => 'Student Student',
             'eduPersonEntitlement' => array('a:permission:a'),
 
         ),
-        'e:e' => array(
+        'e:pass' => array(
             'eduPersonPrincipalName' => array('employee@project.local'),
-            'eduPersonAffiliation' => array('member', 'employee'),
+            'eduPersonScopedAffiliation' => array('member@project.local', 'employee@project.local'),
             'mail' => array('employee@project.local'),
             'displayName' => 'Employee Employee',
             'eduPersonEntitlement' => array('a:permission:b'),
+        ),
+        'snolocal:pass' => array(
+            'eduPersonPrincipalName' => array('student@project.nolocal'),
+            'eduPersonScopedAffiliation' => array('member@project.nolocal', 'student@project.nolocal'),
+            'mail' => array('student@project.nolocal'),
+            'displayName' => 'Student Student',
+            'eduPersonEntitlement' => array('b:permission:a'),
+
+        ),
+        'enolocal:pass' => array(
+            'eduPersonPrincipalName' => array('employee@project.nolocal'),
+            'eduPersonScopedAffiliation' => array('member@project.nolocal', 'employee@project.nolocal'),
+            'mail' => array('employee@project.nolocal'),
+            'displayName' => 'Employee Employee',
+            'eduPersonEntitlement' => array('b:permission:b'),
         ),
     ),
 
