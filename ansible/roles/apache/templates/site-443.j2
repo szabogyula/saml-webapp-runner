@@ -16,6 +16,7 @@
         AuthType shibboleth
         ShibUseHeaders On
         ShibRequireSession Off
+        Require shibboleth
     </Directory>
 
     Alias /simplesaml {{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/www
