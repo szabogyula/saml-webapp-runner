@@ -49,5 +49,5 @@
     state=directory
 
 - name: create self-signed SSL cert
-  sudo: yes
+  become: yes
   command: openssl req -new -nodes -x509 -subj "/C=HU/ST=Budapest/L=Budapest/O=IT/CN=project.local" -days 3650 -keyout {{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/cert/server.pem -out {{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/cert/server.crt
