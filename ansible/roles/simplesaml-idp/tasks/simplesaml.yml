@@ -2,7 +2,7 @@
 
 - name: Grabs required simplesaml version
   get_url:
-    url=https://simplesamlphp.org/res/downloads/simplesamlphp-{{simplesaml_version}}.tar.gz
+    url=http://simplesamlphp.org/res/downloads/simplesamlphp-{{simplesaml_version}}.tar.gz
     dest=/tmp
 
 - name: Creates install directory
