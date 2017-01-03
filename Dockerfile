@@ -1,4 +1,4 @@
-FROM ansible/ubuntu14.04-ansible:stable
+FROM geerlingguy/docker-ubuntu1604-ansible
 
 ADD init.sh /root/
 ADD ansible /tmp

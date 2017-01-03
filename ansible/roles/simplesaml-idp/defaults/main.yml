@@ -1,5 +1,5 @@
 simplesaml_base_url: 'simplesaml/'
-simplesaml_version: 1.13.2
+simplesaml_version: 1.14.11
 simplesaml_install_directory: /var/simplesamlphp
 simplesaml_auth_adminpassword: 121212
 simplesaml_secretsalt: 'pepper'

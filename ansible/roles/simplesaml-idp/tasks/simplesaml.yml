@@ -1,8 +1,10 @@
-- debug: vars=simplesaml
+- debug:
+    var:
+      simplesaml
 
 - name: Grabs required simplesaml version
   get_url:
-    url=http://simplesamlphp.org/res/downloads/simplesamlphp-{{simplesaml_version}}.tar.gz
+    url=https://github.com/simplesamlphp/simplesamlphp/releases/download/v{{simplesaml_version}}/simplesamlphp-{{simplesaml_version}}.tar.gz
     dest=/tmp
 
 - name: Creates install directory
@@ -23,7 +25,6 @@
     - { file: 'config.php', destdir: 'config'}
     - { file: 'authsources.php', destdir: 'config' }
     - { file: 'saml20-idp-hosted.php', destdir: 'metadata'}
-    - { file: 'config-metarefresh.php', destdir: 'config'}
 
 - name: Copy default config files
   copy: src={{simplesaml_install_directory}}/simplesamlphp-{{simplesaml_version}}/modules/cron/config-templates/module_cron.php
