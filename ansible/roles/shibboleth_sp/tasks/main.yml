@@ -1,17 +1,17 @@
 - name: Install apache2 shibboleth module
-  sudo: yes
+  become: yes
   apt: name=libapache2-mod-shib2
        state=installed
 
 - name: Enable apache2 shibboleth modul
-  sudo: yes
+  become: yes
   command: a2enmod shib2
   notify: Restart apache2
 
 # Configure Shiboleth SP
 # Create self-signed SSL certs
 - name: create self-signed SSL cert
-  sudo: yes
+  become: yes
   command: openssl req -new -nodes -x509 -subj "/C=HU/ST=Budapest/L=Budapest/O=IT/CN=project.local" -days 3650 -keyout /etc/shibboleth/project.shibboleth.key -out /etc/shibboleth/project.shibboleth.crt
   notify: Restart shibd
 
@@ -19,19 +19,19 @@
 #   file: path=/etc/shibboleth/metadata state=directory
 
 # - name: Setup metadata.xml
-#   sudo: yes
+#   become: yes
 #   template: dest=/etc/shibboleth/metadata/metadata.xml
 #             src=metadata.xml.j2
 #   notify: Restart shibd
 
 - name: Setup shibboleth2.xml
-  sudo: yes
+  become: yes
   template: dest=/etc/shibboleth/shibboleth2.xml
             src=shibboleth2.xml.j2
   notify: Restart shibd
 
 - name: Copy attribute-map.xml
-  sudo: yes
+  become: yes
   copy:
     src: attribute-map.xml
     dest: /etc/shibboleth/attribute-map.xml
