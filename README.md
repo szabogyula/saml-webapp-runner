@@ -37,3 +37,7 @@ Development
 -----------
 
 * If you modify anything under `/path/to/webapp_project/www` folder, you can try it immediatly, because the app reads this folder as `DocumentRoot`.
+
+
+![architecture][doc/architectire_diagram.png]
+[doc/architectire_diagram.png]: 
