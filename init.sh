@@ -6,7 +6,7 @@ if [[ -n "$DOCUMENT_ROOT" ]]; then
 fi
 
 echo start apache2
-service apache2 start
+apachectl start
 
 echo start shibd
 service shibd start
