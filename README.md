@@ -21,3 +21,42 @@ Warning: this container under strong development. Be careful!
  
 ## Development
 * If you modify anything under `/path/to/edugain-attribute-checker/www` folder, you can try it immediatly, because the app reads this folder as `DocumentRoot`.
+
+## Use
+
+### IdP users
+
+The users and his attributes that you can use.
+
+```
+        's:pass' => array(
+            'eduPersonPrincipalName' => array('student@project.local'),
+            'eduPersonScopedAffiliation' => array('member@project.local', 'student@project.local'),
+            'mail' => array('student@project.local'),
+            'displayName' => 'Student Student',
+            'eduPersonEntitlement' => array('a:permission:a'),
+
+        ),
+        'e:pass' => array(
+            'eduPersonPrincipalName' => array('employee@project.local'),
+            'eduPersonScopedAffiliation' => array('member@project.local', 'employee@project.local'),
+            'mail' => array('employee@project.local'),
+            'displayName' => 'Employee Employee',
+            'eduPersonEntitlement' => array('a:permission:b'),
+        ),
+        'snolocal:pass' => array(
+            'eduPersonPrincipalName' => array('student@project.nolocal'),
+            'eduPersonScopedAffiliation' => array('member@project.nolocal', 'student@project.nolocal'),
+            'mail' => array('student@project.nolocal'),
+            'displayName' => 'Student Student',
+            'eduPersonEntitlement' => array('b:permission:a'),
+
+        ),
+        'enolocal:pass' => array(
+            'eduPersonPrincipalName' => array('employee@project.nolocal'),
+            'eduPersonScopedAffiliation' => array('member@project.nolocal', 'employee@project.nolocal'),
+            'mail' => array('employee@project.nolocal'),
+            'displayName' => 'Employee Employee',
+            'eduPersonEntitlement' => array('b:permission:b'),
+        ),
+```
