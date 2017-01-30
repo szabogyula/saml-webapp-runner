@@ -22,11 +22,11 @@ Run
 __Set resolving__
  Edit your `/etc/hosts` file in your machine. All hostnames `project.local` must show to local Docker IP address, which is usually `192.168.99.100 project.local` or on Ubuntu 16.04 `127.0.0.1 project.local`
 
-You can override the default project.local hostname by environment variable: `HOSTNAME`
+You can override the default project.local hostname by environment variable: `PROJECT_HOSTNAME`
 
 example:
 
-`docker run -d -p 80:80 -p 443:443 -p 8080:8080 -e HOSTNAME=example.com -v /path/to/webapp_project:/var/www/project szabogyula/saml-webapp-runner:ubuntu16.04`
+`docker run -d -p 80:80 -p 443:443 -p 8080:8080 -e PROJECT_HOSTNAME=example.com -v /path/to/webapp_project:/var/www/project szabogyula/saml-webapp-runner:ubuntu16.04`
 
 __Run the docker container__
 Run for development (adjust the example hostnames before running!): `docker run -d -p 80:80 -p 443:443 -p 8080:8080 --add-host project.local:127.0.0.1
