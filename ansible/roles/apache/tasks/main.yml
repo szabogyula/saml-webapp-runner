@@ -50,6 +50,12 @@
     name: mysql-client
     state: installed
 
+- name: Unlimited php memory apache
+  lineinfile:
+    dest: /etc/php/7.0/apache2/php.ini
+    regexp: '^memory_limit'
+    line: 'memory_limit = -1'
+
 # - name: Install config.php
 #   template:
 #     src: config.php.j2
