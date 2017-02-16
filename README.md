@@ -28,6 +28,12 @@ example:
 
 `docker run -d -p 80:80 -p 443:443 -p 8080:8080 -e PROJECT_HOSTNAME=example.com -v /path/to/webapp_project:/var/www/project szabogyula/saml-webapp-runner:ubuntu16.04`
 
+__Own logfiles to tailon__
+Provide your interest logfiles into the LOGFILES environment variable, separate with commas:
+
+`docker run -d -p 80:80 -p 443:443 -p 8080:8080 -e LOGFILES=/var/www/project/var/logs/dev.log,/var/www/project/var/logs/prod.log -v /path/to/webapp_project:/var/www/project szabogyula/saml-webapp-runner:ubuntu16.04`
+
+
 __Run the docker container__
 Run for development (adjust the example hostnames before running!): `docker run -d -p 80:80 -p 443:443 -p 8080:8080 --add-host project.local:127.0.0.1
  -v /path/to/webapp_project:/var/www/project szabogyula/saml-webapp-runner:ubuntu16.04

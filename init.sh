@@ -49,6 +49,12 @@ fi
 echo restart shibd
 service shibd start
 
+echo append logfiles to tailon
+for i in $(echo $LOGFILES | sed "s/,/ /g")
+do
+    echo "        - $i" >> /etc/tailon.yml
+done
+
 echo start tailon
 cat /etc/tailon.yml
 tailon -c /etc/tailon.yml
