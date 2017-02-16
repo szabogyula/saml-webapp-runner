@@ -32,8 +32,6 @@ if [[ -n "$DOCUMENT_ROOT" ]]; then
 	sed -i -e "s#/var/www/project/web#/var/www/project/$DOCUMENT_ROOT#g" /etc/apache2/sites-available/000-default.conf
 fi
 
-chown -R www-data /tmp/cache /tmp/logs
-
 echo start apache2
 apachectl start
 
@@ -46,8 +44,18 @@ if [[ -n "$PROJECT_HOSTNAME" ]]; then
 else
 	curl -v -k 'https://project.local/Shibboleth.sso/Metadata' -o /var/simplesamlphp/simplesamlphp-1.14.11/metadata/sp-metadata.xml
 fi
+
 echo restart shibd
 service shibd start
+
+echo warm up logfiles
+if [[ -n "$PROJECT_HOSTNAME" ]]; then
+	curl -k https://"$PROJECT_HOSTNAME"/
+	curl -k https://"$PROJECT_HOSTNAME"/app_dev.php
+else
+	curl -k https://project.local/
+	curl -k https://project.local/app_dev.php
+fi
 
 echo append logfiles to tailon
 for i in $(echo $LOGFILES | sed "s/,/ /g")
