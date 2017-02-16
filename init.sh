@@ -50,11 +50,11 @@ service shibd start
 
 echo warm up logfiles
 if [[ -n "$PROJECT_HOSTNAME" ]]; then
-	curl -k https://"$PROJECT_HOSTNAME"/
-	curl -k https://"$PROJECT_HOSTNAME"/app_dev.php
+	curl -s -k https://"$PROJECT_HOSTNAME"/ > /dev/null
+	curl -s -k https://"$PROJECT_HOSTNAME"/app_dev.php > /dev/null
 else
-	curl -k https://project.local/
-	curl -k https://project.local/app_dev.php
+	curl -s -k https://project.local/ > /dev/null
+	curl -s -k https://project.local/app_dev.php > /dev/null
 fi
 
 echo append logfiles to tailon
