@@ -60,7 +60,10 @@ fi
 echo append logfiles to tailon
 for i in $(echo $LOGFILES | sed "s/,/ /g")
 do
-    echo "        - $i" >> /etc/tailon.yml
+    if ! grep -q $i /etc/tailon.yml
+    then
+        echo "        - $i" >> /etc/tailon.yml
+    fi
 done
 
 echo start tailon
