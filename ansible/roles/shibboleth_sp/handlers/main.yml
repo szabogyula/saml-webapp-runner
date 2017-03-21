@@ -1,9 +1,9 @@
 - name: Restart apache2
-  sudo: yes
+  become: yes
   service: name=apache2
            state=restarted
 
 - name: Restart shibd
-  sudo: yes
+  become: yes
   service: name=shibd
            state=restarted

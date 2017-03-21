@@ -10,23 +10,15 @@
     - tailon
   vars:
     - tailon_logfiles:
-      - system:
-          - /var/log/messages
-          - /var/log/syslog
-      - shibboleth:
           - /var/log/shibboleth/shibd.log
           - /var/log/shibboleth/shibd_warn.log
           - /var/log/shibboleth/signature.log
           - /var/log/shibboleth/transaction.log
-      - apache:
           - /var/log/apache2/access.log
           - /var/log/apache2/error.log
           - /var/log/apache2/other_vhosts_access.log
-      - application:
-          - /var/www/project/app/logs/prod.log
-          - /var/www/project/app/logs/dev.log
-      - simplesamlphp:
-          - /tmp/simplesamlphp.log
+      # - simplesamlphp:
+      #     - /tmp/simplesamlphp.log
   tasks:
    # - name: Run composer install
    #   composer:

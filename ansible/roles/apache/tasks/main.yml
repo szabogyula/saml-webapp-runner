@@ -1,18 +1,24 @@
+- name: Apt update
+  apt:
+    update_cache: yes
+
 - name: Install http packages
   apt:
     name: "{{item}}"
     state: installed
   with_items:
     - apache2
-    - php5
-    - php5-mysql
-    - php5-mcrypt
+    - libapache2-mod-php
+    - php
+    - php-mysql
+    - php-mcrypt
     - mcrypt
-    - php5-curl
+    - php-curl
+    - php-xml
 
 - name: Enable mcrypt extension
   lineinfile:
-    dest: /etc/php5/cli/php.ini
+    dest: /etc/php/7.0/cli/php.ini
     line: "extension=mcrypt.so"
     insertafter: EOF
 
@@ -43,6 +49,12 @@
   apt:
     name: mysql-client
     state: installed
+
+- name: Unlimited php memory apache
+  lineinfile:
+    dest: /etc/php/7.0/apache2/php.ini
+    regexp: '^memory_limit'
+    line: 'memory_limit = -1'
 
 # - name: Install config.php
 #   template:
