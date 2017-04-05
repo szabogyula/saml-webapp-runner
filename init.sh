@@ -29,7 +29,7 @@ fi
 
 echo Set relative document root
 if [[ -n "$DOCUMENT_ROOT" ]]; then
-	sed -i -e "s#/var/www/project/web#/var/www/project/$DOCUMENT_ROOT#g" /etc/apache2/sites-available/000-default.conf
+	sed -i -e "s#/var/www/project/web#$DOCUMENT_ROOT#g" /etc/apache2/sites-available/000-default.conf
 fi
 
 echo start apache2
