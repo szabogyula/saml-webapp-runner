@@ -5,6 +5,7 @@ ADD ansible /tmp
 WORKDIR /tmp
 
 # Run Ansible to configure the Docker image
+RUN ansible-galaxy install -r requirements.yml
 RUN ansible-playbook index.yml -c local
 
 # Setup writable symfony cache and logs

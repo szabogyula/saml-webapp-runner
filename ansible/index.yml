@@ -8,6 +8,7 @@
     - simplesaml-idp
     - mbasanta.pip
     - tailon
+    - geerlingguy.filebeat
   vars:
     - tailon_logfiles:
           - /var/log/shibboleth/shibd.log
@@ -17,6 +18,17 @@
           - /var/log/apache2/access.log
           - /var/log/apache2/error.log
           - /var/log/apache2/other_vhosts_access.log
+    - filebeat_prospectors:
+        - input_type: log
+          paths:
+            - "/var/log/apache2/access.log"
+          fields:
+            #{{ ansible_env.logstash_field_name }}: apache-usec
+            hexaa_dev_apache: apache-usec
+    - filebeat_output_logstash_hosts:
+        - {{ ansible_env.logstash_host_port }}
+    - custom_logformat: '"%v:%p %h %l %u %D \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\""'
+
       # - simplesamlphp:
       #     - /tmp/simplesamlphp.log
   tasks:

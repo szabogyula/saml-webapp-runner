@@ -3,6 +3,10 @@
     ServerAdmin sys-admin@niif.hu
     DocumentRoot /var/www/project/web
 
+    {% if custom_logformat is defined %}
+      LogFormat {{ custom_logformat }}
+    {% endif %}
+
     SSLEngine on
     SSLOptions +StdEnvVars +ExportCertData
 

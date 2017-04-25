@@ -66,6 +66,12 @@ do
     fi
 done
 
+# filebeat start if there is /tmp/filebeat.yml
+if [ -e "/tmp/filebeat.yml" ]; then
+    /etc/init.d/filebeat start
+fi
+
+
 echo start tailon
 cat /etc/tailon.yml
 tailon -c /etc/tailon.yml

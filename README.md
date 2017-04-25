@@ -45,7 +45,11 @@ You can set the relative document root instead of `web` by set `DOCUMENT_ROOT` e
 __Access the webapp__
 * 80 and 443 port is the application, and there is a tailon at 8080 port
 
- 
+__Filebeat__
+If you mount a correct /tmp/filebeat.yml, the filebeat will be start with these configuration.
+
+` docker run ... -v /path/to/filebeat.yml:/tmp/filebeat.yml ...`
+
 ## Development
 * If you modify anything under `/path/to/edugain-attribute-checker/www` folder, you can try it immediatly, because the app reads this folder as `DocumentRoot`.
 
