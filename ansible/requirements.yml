@@ -1,1 +1,2 @@
 - src: geerlingguy.filebeat
+- src: geerlingguy.composer

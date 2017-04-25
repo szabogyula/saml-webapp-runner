@@ -9,6 +9,7 @@
     - mbasanta.pip
     - tailon
     - geerlingguy.filebeat
+    - geerlingguy.composer
   vars:
     - tailon_logfiles:
           - /var/log/shibboleth/shibd.log
