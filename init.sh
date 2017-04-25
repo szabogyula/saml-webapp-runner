@@ -68,10 +68,9 @@ done
 
 # filebeat start if there is /tmp/filebeat.yml
 if [ -e "/tmp/filebeat.yml" ]; then
-    /etc/init.d/filebeat start
+    filebeat -e -d '*'
+else
+    echo start tailon
+    cat /etc/tailon.yml
+    tailon -c /etc/tailon.yml
 fi
-
-
-echo start tailon
-cat /etc/tailon.yml
-tailon -c /etc/tailon.yml

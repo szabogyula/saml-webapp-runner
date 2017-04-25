@@ -4,7 +4,9 @@
     DocumentRoot /var/www/project/web
 
     {% if custom_logformat is defined %}
-      LogFormat {{ custom_logformat }}
+    CustomLog /var/log/apache2/project.local_access.log {{ custom_logformat }}
+    {% else %}
+    CustomLog /var/log/apache2/project.local_access.log combined
     {% endif %}
 
     SSLEngine on
