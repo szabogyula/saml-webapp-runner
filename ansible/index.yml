@@ -26,30 +26,13 @@
             #{{ ansible_env.logstash_field_name }}: apache-usec
             hexaa_dev_apache: apache-usec
     - filebeat_output_logstash_hosts:
-        - {{ ansible_env.logstash_host_port }}
-    - custom_logformat: '"%v:%p %h %l %u %D \"%r\" %>s %O \"%{Referer}i\" \"%{User-Agent}i\""'
+        #- {{ ansible_env.logstash_host_port }}
+    - custom_logformat: '"%h %l %u %t \"%r\" %>s %O %D \"%{Referer}i\" \"%{User-Agent}i\""'
 
       # - simplesamlphp:
       #     - /tmp/simplesamlphp.log
   tasks:
-   # - name: Run composer install
-   #   composer:
-   #     command: install
-   #     working_dir: /var/www
-
-   # - name: Run composer update
-   #   composer:
-   #     command: update
-   #     working_dir: /var/www
-
-   # - name: Init simplesamlphp config
-   #   shell: "mv /var/www/vendor/simplesamlphp/simplesamlphp/config-templates/*.php /var/www/vendor/simplesamlphp/simplesamlphp/config/"
-
-   # - name: Enable metarefresh module
-   #   shell: "touch /var/www/vendor/simplesamlphp/simplesamlphp/modules/metarefresh/enable"
-
-   # - name: Load metadata for SPs
-   #   shell: "php /var/www/vendor/simplesamlphp/simplesamlphp/modules/metarefresh/bin/metarefresh.php {% for sp in sp_hosts %}http://entities.eduid.hu/entities/https%3A%2F%2F{{ sp }}%2Fshibboleth {% endfor %}"
-
-   # - name: delete /tmp/simplesaml
-   #   shell: rm -rf /tmp/simplesaml && chown -R www-data /var/www/vendor/simplesamlphp/simplesamlphp
+    - name: install vim
+      apt:
+        name:  vim
+        state: installed
