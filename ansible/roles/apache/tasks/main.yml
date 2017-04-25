@@ -56,12 +56,7 @@
     regexp: '^memory_limit'
     line: 'memory_limit = -1'
 
-# - name: Install config.php
-#   template:
-#     src: config.php.j2
-#     dest: /var/www/config.php
-#     owner: root
-#     group: root
-#     mode: 0644
-#     backup: yes
-
+- name: Create empty index.html under html directory
+  file:
+    path: /var/www/html/index.html
+    state: touch
