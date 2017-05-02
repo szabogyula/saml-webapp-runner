@@ -39,10 +39,13 @@ echo start shibd
 service shibd start
 
 echo refresh metadata
+mkdir /etc/shibboleth/metadata
 if [[ -n "$PROJECT_HOSTNAME" ]]; then
 	curl -v -k https://"$PROJECT_HOSTNAME"/Shibboleth.sso/Metadata -o /var/simplesamlphp/simplesamlphp-1.14.11/metadata/sp-metadata.xml
+    curl -v -k https://"$PROJECT_HOSTNAME"/simplesaml/saml2/idp/metadata.php -o /etc/shibboleth/metadata/metadata.xml
 else
 	curl -v -k 'https://project.local/Shibboleth.sso/Metadata' -o /var/simplesamlphp/simplesamlphp-1.14.11/metadata/sp-metadata.xml
+    curl -v -k 'https://project.local/simplesaml/saml2/idp/metadata.php' -o /etc/shibboleth/metadata/metadata.xml
 fi
 
 echo restart shibd

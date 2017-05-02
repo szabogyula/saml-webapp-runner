@@ -68,12 +68,14 @@
             styleSheet="/shibboleth-sp/main.css"/>
         
         <!-- Example of remotely supplied batch of metadata. -->
-        <MetadataProvider type="XML" uri="https://project.local/simplesaml/saml2/idp/metadata.php"
-              backingFilePath="idp-metadata.xml" reloadInterval="7200">
-        </MetadataProvider>
-        
+        <!--
+          <MetadataProvider type="XML" uri="https://project.local/simplesaml/saml2/idp/metadata.php"
+                backingFilePath="idp-metadata.xml" reloadInterval="7200">
+          </MetadataProvider>
+        -->
+
         <!-- Example of locally maintained metadata. -->
-        <!-- MetadataProvider type="XML" file="metadata/metadata.xml"/ -->
+        <MetadataProvider type="XML" file="metadata/metadata.xml" />
 
         <!-- Map to extract attributes from SAML assertions. -->
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>

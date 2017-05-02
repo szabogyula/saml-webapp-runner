@@ -26,7 +26,7 @@
           fields:
             #{{ ansible_env.logstash_field_name }}: apache-usec
             hexaa_dev_apache: apache-usec
-    - filebeat_output_logstash_hosts:
+    #- filebeat_output_logstash_hosts:
         #- {{ ansible_env.logstash_host_port }}
     - custom_logformat: '"%h %l %u %t \"%r\" %>s %O %D \"%{Referer}i\" \"%{User-Agent}i\""'
 
