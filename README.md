@@ -39,8 +39,11 @@ Run for development (adjust the example hostnames before running!): `docker run 
  -v /path/to/webapp_project:/var/www/project szabogyula/saml-webapp-runner
  `
 
-__Set the document root__
+__Set the DocumentRoot__
 You can set the relative document root instead of `web` by set `DOCUMENT_ROOT` environment variable.
+
+in case of html directory:
+` ...  -e DOCUMENT_ROOT=/var/www/project/html ...`
 
 __Access the webapp__
 * 80 and 443 port is the application, and there is a tailon at 8080 port
