@@ -24,6 +24,15 @@
 #             src=metadata.xml.j2
 #   notify: Restart shibd
 
+- name: Set DEBUG loglevel
+  become: yes
+  replace:
+      #path:    /etc/shibboleth/shibd.logger
+      dest:    /etc/shibboleth/shibd.logger
+      regexp:  'log4j.rootCategory=INFO'
+      replace: 'log4j.rootCategory=DEBUG'
+  notify: Restart shibd
+
 - name: Setup shibboleth2.xml
   become: yes
   template: dest=/etc/shibboleth/shibboleth2.xml
@@ -35,3 +44,4 @@
   copy:
     src: attribute-map.xml
     dest: /etc/shibboleth/attribute-map.xml
+  notify: Restart shibd
