@@ -17,6 +17,7 @@
     - php-xml
     - php-zip
     - php-mbstring
+    - php-xdebug
 
 - name: Enable mcrypt extension
   lineinfile:
@@ -42,6 +43,15 @@
   template:
     src: site-443.j2
     dest: "/etc/apache2/sites-available/000-default.conf"
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+- name: Configure xdebug
+  template:
+    src: 20-xdebug.ini
+    dest: "/etc/php/7.0/apache2/conf.d/20-xdebug.ini"
     owner: root
     group: root
     mode: 0644
