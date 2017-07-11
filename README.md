@@ -59,6 +59,18 @@ If you mount a correct /tmp/filebeat.yml, the filebeat will be start with these 
 Use
 ---
 
+__Xdebug__
+
+The xdebug is installed into php. You have to set an alias to your ethernet interface 10.254.254.254 ip address.
+
+On Mac: `sudo ifconfig lo0 alias 10.254.254.254`
+
+In PHPstorm you should set
+Preferences > Debug > DBGp proxy
+* host: 10.254.254.254
+* port: 9000
+* ide key: PHPSTORM
+
 __IdP users__
 
 The users and his attributes that you can use.
