@@ -6,10 +6,7 @@ Warning: this container under strong development. Be careful!
 Configure for local development
 --------------------------------
 
-* First, you need [Docker enviroment](https://docker.com/toolbox) on your machine
-* You need a mysql, or mariadb instance, if you don't have yet, it is easy to run in docker: `docker run -d -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD="yes" mysql`
-* Rename `ansible/index.yml.dist` to `ansible/index.yml`, then add your config options into this file (`vars` section)
-
+* You need [Docker enviroment](https://docker.com/toolbox) on your machine
 
 Build
 -----
@@ -52,9 +49,6 @@ __Filebeat__
 If you mount a correct /tmp/filebeat.yml, the filebeat will be start with these configuration.
 
 ` docker run ... -v /path/to/filebeat.yml:/tmp/filebeat.yml ...`
-
-## Development
-* If you modify anything under `/path/to/edugain-attribute-checker/www` folder, you can try it immediatly, because the app reads this folder as `DocumentRoot`.
 
 Use
 ---
